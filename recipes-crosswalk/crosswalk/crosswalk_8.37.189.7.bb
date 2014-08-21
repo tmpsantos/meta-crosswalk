@@ -308,6 +308,8 @@ LIC_FILES_CHKSUM = "file://${S}/xwalk/LICENSE;md5=c3d4637b0c8ceffb4111debb006efe
 DEPENDS = "ninja-native pkgconfig-native gtk+ glib-2.0 pulseaudio libxss libdrm nss elfutils libxslt icu fontconfig harfbuzz"
 
 SRC_URI += "https://download.01.org/crosswalk/releases/crosswalk/source/crosswalk-${PV}.tar.xz;name=tarball \
+    file://embedded_chromium_crosswalk.patch;patch=1 \
+    file://embedded_crosswalk.patch;patch=1 \
     file://use_window_manager_native_decorations.patch;patch=1 \
     file://include.gypi \
     file://defaults.gypi"
@@ -334,6 +336,10 @@ do_configure() {
     # the target compiler is being used and the output is not always valid on the host.
     export CC_host="gcc"
     export CXX_host="g++"
+
+    # TODO(vignatti): this is an workaround for Ozone-Wayland not bother other
+    # Ozone configurations.
+    rm -rf ozone/supplement.gypi
 
     xwalk/gyp_xwalk --depth=. -I${WORKDIR}/defaults.gypi -I${WORKDIR}/include.gypi
 }

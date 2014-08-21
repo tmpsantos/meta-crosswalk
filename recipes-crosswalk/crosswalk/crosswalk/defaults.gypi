@@ -24,5 +24,10 @@
     'use_system_openssl': 1,
     'use_system_speex': 1,
     'use_system_zlib': 1,
-  }
+  },
+  'target_defaults': {
+    'ldflags!': [
+      '-Wl,--fatal-warnings',
+    ],
+  },
 }

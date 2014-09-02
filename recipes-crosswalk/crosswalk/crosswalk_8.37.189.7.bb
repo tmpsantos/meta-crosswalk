@@ -305,7 +305,8 @@ LIC_FILES_CHKSUM = "file://${S}/xwalk/LICENSE;md5=c3d4637b0c8ceffb4111debb006efe
     file://${S}/v8/LICENSE;md5=4fbc731ec49a1773a0db52c6b0eabb87 \
     file://${S}/webkit/LICENSE;md5=11e90d553b211de885f245900c4ccf89"
 
-DEPENDS = "ninja-native pkgconfig-native gtk+ glib-2.0 pulseaudio libxss libdrm nss elfutils libxslt icu fontconfig harfbuzz"
+DEPENDS = "ninja-native pkgconfig-native gtk+ glib-2.0 pulseaudio libxss libdrm nss elfutils libxslt icu fontconfig harfbuzz mesa"
+RDEPENDS_${PN} = "libgles2-mesa libegl-mesa"
 
 SRC_URI += "https://download.01.org/crosswalk/releases/crosswalk/source/crosswalk-${PV}.tar.xz;name=tarball \
     file://embedded_chromium_crosswalk.patch;patch=1 \
